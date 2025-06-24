@@ -35,3 +35,33 @@ Task Tracker AI is a minimal Angular-based task tracking app that uses OpenAI’
    git clone https://github.com/niccojacinto/task-tracker.git
    cd task-tracker
    ```
+
+2. **Install Dependencies**
+  ```
+  npm install
+  ```
+
+3. **Add your OpenAI API key**
+
+When you launch the app, you'll be prompted to enter your own GPT-4 API key via a secure overlay input.
+
+🚫 The API key is never stored, logged, or saved — it exists only in memory for that session.
+
+4. **Run the development server**
+  ```
+  ng serve
+  ```
+
+
+📄 How It Works
+When you enter a new note, it’s sent to GPT-4 via the OpenAI Chat Completion API with a prompt asking for:
+
+A short, descriptive title
+
+A condensed version of the note
+
+Any dates or times mentioned
+
+Any links or URLs found
+
+The response is parsed into a structured TaskData object and rendered in the UI.
