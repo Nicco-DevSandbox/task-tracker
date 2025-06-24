@@ -1,0 +1,38 @@
+<div
+  *ngIf="isVisible"
+  @fadeInOut
+  (@fadeInOut.done)="onAnimationDone()"
+  class="flex justify-between items-start w-full p-4 border rounded shadow bg-yellow-100"
+>
+  <!-- Left section: Title, Description, Date, Time, Links -->
+  <div class="flex flex-col space-y-1 max-w-[75%]">
+    <span class="text-xs font-bold text-gray-700">{{ taskData.title }}</span>
+    <span class="text-xs text-gray-700">{{ taskData.description }}</span>
+
+    <!-- Date and Time -->
+    <div class="text-xs text-gray-500 flex space-x-4">
+      <span *ngIf="taskData.date">📅 {{ taskData.date }}</span>
+      <span *ngIf="taskData.time">⏰ {{ taskData.time }}</span>
+    </div>
+
+    <!-- Links -->
+    <div
+      *ngIf="taskData.links?.length"
+      class="flex flex-col text-xs text-blue-600"
+    >
+      <span
+        *ngFor="let link of taskData.links"
+        class="underline hover:text-blue-800"
+      >
+        <a [href]="link" target="_blank" rel="noopener noreferrer"
+          >{{ link }}</a
+        >
+      </span>
+    </div>
+  </div>
+
+  <!-- Right section: Delete button -->
+  <button class="text-xs text-red-500 hover:underline" (click)="deleteTask()">
+    Delete
+  </button>
+</div>

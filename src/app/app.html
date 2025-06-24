@@ -1,0 +1,71 @@
+<div
+  class="relative flex flex-col min-w-[320px] min-h-[480px] h-screen w-screen max-w-[99vw] max-h-[99vh] mx-auto rounded-xl border border-gray-300 shadow-lg overflow-hidden bg-white"
+>
+  <!-- Title Bar -->
+  <div class="bg-gray-600 px-4 py-2 flex justify-between items-center">
+    <h2 class="text-gray-100 font-semibold text-sm flex items-center">
+      <img src="TodAI.ico" alt="TodAI icon" class="w- h-12" />
+      TodAI (devBuild)
+    </h2>
+    <!-- Hamburger Button -->
+    <button
+      aria-label="Toggle Categories"
+      class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 group"
+      (click)="showKeyOverlay = true;"
+    >
+      <span
+        class="w-6 h-0.5 bg-gray-100 group-hover:bg-gray-900 transition"
+      ></span>
+      <span
+        class="w-6 h-0.5 bg-gray-100 group-hover:bg-gray-900 transition"
+      ></span>
+      <span
+        class="w-6 h-0.5 bg-gray-100 group-hover:bg-gray-900 transition"
+      ></span>
+    </button>
+  </div>
+
+  <app-key-overlay
+    *ngIf="showKeyOverlay"
+    (close)="showKeyOverlay = false"
+    (onKeySet)="setApiKey($event)"
+  />
+
+  <app-newtask-overlay
+    *ngIf="showOverlay"
+    (closed)="closeNewTaskOverlay()"
+    (onTaskAdded)="analyzeNote($event)"
+  />
+
+  <!-- Task List Area -->
+  <div class="p-4 overflow-y-auto space-y-2">
+    <ul>
+      <li *ngFor="let taskItem of tasks">
+        <app-task
+          [taskData]="taskItem"
+          (onDelete)="deleteTask($event)"
+        ></app-task>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Add Task Input -->
+
+  <button
+    *ngIf="showAddButton"
+    class="absolute bottom-6 right-6 w-9 h-9 flex items-center justify-center bg-green-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-colors duration-200"
+    aria-label="Add"
+    (click)="showNewTaskOverlay()"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+    </svg>
+  </button>
+</div>
