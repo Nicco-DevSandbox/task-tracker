@@ -94,6 +94,5 @@ export class App {
 
   setApiKey(key: string) {
     this.gptPromptService.apiKey = key;
-    console.log('API Key set:', key);
   }
 }
