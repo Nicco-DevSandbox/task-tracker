@@ -32,7 +32,7 @@ Task Tracker AI is a minimal Angular-based task tracking app that uses OpenAI’
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/niccojacinto/task-tracker.git
+   git clone https://github.com/Nicco-DevSandbox/task-tracker.git
    cd task-tracker
    ```
 
